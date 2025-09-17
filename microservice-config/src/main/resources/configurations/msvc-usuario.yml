@@ -5,15 +5,16 @@ spring:
   application:
     name: msvc-usuario
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:oracle:thin:@//localhost:1522/XEPDB1
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1522/XEPDB1
     username: Userapp
     password: contraseña
   jpa:
     hibernate:
       ddl-auto: update
     database: oracle
-    database-platform: org.hibernate.dialect.Oracle12cDialect
+    show-sql: true
+    database-platform: org.hibernate.dialect.OracleDialect
 
 eureka:
   instance:

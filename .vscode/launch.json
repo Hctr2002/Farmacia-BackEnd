@@ -5,7 +5,8 @@
             "name": "MicroserviceEurekaApplication",
             "request": "launch",
             "mainClass": "com.microservice.eureka.MicroserviceEurekaApplication",
-            "projectName": "microservice-eureka"
+            "projectName": "microservice-eureka",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=53139 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-eureka"
         },
         {
             "type": "java",
@@ -14,6 +15,26 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.microservice.config.MicroserviceConfigApplication",
             "projectName": "microservice-config",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceGatewayApplication<microservice-gateway>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.gateway.MicroserviceGatewayApplication",
+            "projectName": "microservice-gateway",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceUsuarioApplication<microservice-usuario>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.usuario.MicroserviceUsuarioApplication",
+            "projectName": "microservice-usuario",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
