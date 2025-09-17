@@ -1,7 +1,7 @@
 server:
   port: 8080
 
-spring::
+spring:
   application:
     name: msvc-gateway
   cloud:
@@ -9,25 +9,16 @@ spring::
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
       routes:
-        - id: productos
-          uri: localhost:8001
+        - id: msvc-usuario
+          uri: http://localhost:8002
           predicates:
-            - Path=api/v1/productos/**
-        - id: usuarios
-          uri: localhost:8002
-          predicates:
-            - Path=api/v1/usuarios/**
-        - id: ventas
-          uri: localhost:8003
-          predicates:
-            - Path=api/v1/ventas/**
-        - id: recordatorios
-          uri: localhost:8004
-          predicates:
-            - Path=api/v1/recordatorios/**
+            - Path=/api/v1/usuarios/**
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
