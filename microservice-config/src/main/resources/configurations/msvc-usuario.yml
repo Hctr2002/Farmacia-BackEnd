@@ -1,0 +1,23 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: msvc-usuario
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:oracle:thin:@//localhost:1522/XEPDB1
+    username: Userapp
+    password: contraseña
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: oracle
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
