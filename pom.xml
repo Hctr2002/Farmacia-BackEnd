@@ -5,6 +5,7 @@
 
   <modules>
     <module>microservice-config</module>
+    <module>microservice-eureka</module>
   </modules>
 
   <parent>
