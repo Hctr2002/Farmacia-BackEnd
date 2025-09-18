@@ -16,7 +16,8 @@
             "mainClass": "com.microservice.config.MicroserviceConfigApplication",
             "projectName": "microservice-config",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=50865 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-config"
         },
         {
             "type": "java",
@@ -26,7 +27,8 @@
             "mainClass": "com.microservice.gateway.MicroserviceGatewayApplication",
             "projectName": "microservice-gateway",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=50887 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-gateway"
         },
         {
             "type": "java",
@@ -35,6 +37,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.microservice.usuario.MicroserviceUsuarioApplication",
             "projectName": "microservice-usuario",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceProductoApplication<microservice-producto>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.producto.MicroserviceProductoApplication",
+            "projectName": "microservice-producto",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

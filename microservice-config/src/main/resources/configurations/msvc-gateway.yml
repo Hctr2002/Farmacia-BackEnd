@@ -15,6 +15,10 @@ spring:
           uri: http://localhost:8002
           predicates:
             - Path=/api/v1/usuarios/**
+        - id: msvc-producto
+          uri: http://localhost:8003
+          predicates:
+            - Path=/api/v1/productos/**
 
 eureka:
   client:
