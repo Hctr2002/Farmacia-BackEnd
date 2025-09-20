@@ -9,6 +9,7 @@
     <module>microservice-gateway</module>
     <module>microservice-usuario</module>
     <module>microservice-producto</module>
+    <module>microservice-venta</module>
   </modules>
 
   <parent>
