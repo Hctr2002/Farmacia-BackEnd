@@ -4,6 +4,7 @@ import com.microservice.usuario.dto.UsuarioDTO;
 import com.microservice.usuario.service.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,9 +22,14 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public UsuarioDTO obtenerUsuario(@PathVariable Long id) {
-        return service.obtenerUsuario(id);
+    public ResponseEntity<UsuarioDTO> obtenerUsuario(@PathVariable Long id) {
+        UsuarioDTO usuario = service.obtenerUsuario(id);
+        if (usuario == null) {
+            return ResponseEntity.notFound().build(); // 404
+        }
+        return ResponseEntity.ok(usuario);
     }
+
 
     @GetMapping
     public List<UsuarioDTO> listarUsuarios() {
