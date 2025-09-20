@@ -20,7 +20,7 @@ spring:
           predicates:
             - Path=/api/v1/productos/**
         - id: msvc-venta
-          uri: http://localhost:8004
+          uri: http://localhost:8972
           predicates:
             - Path=/api/v1/ventas/**
 

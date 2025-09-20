@@ -1,9 +1,9 @@
 server:
-  port: 8004
+  port: 8972
 
 spring:
   application:
-    name: msvc-producto
+    name: msvc-venta
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1522/XEPDB1

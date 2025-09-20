@@ -38,7 +38,8 @@
             "mainClass": "com.microservice.usuario.MicroserviceUsuarioApplication",
             "projectName": "microservice-usuario",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49807 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-usuario"
         },
         {
             "type": "java",
@@ -47,6 +48,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.microservice.producto.MicroserviceProductoApplication",
             "projectName": "microservice-producto",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49782 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=microservice-producto"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceVentaApplication<microservice-venta>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.venta.MicroserviceVentaApplication",
+            "projectName": "microservice-venta",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
