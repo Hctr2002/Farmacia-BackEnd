@@ -61,6 +61,16 @@
             "projectName": "microservice-venta",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceRecordatorioApplication<microservice-recordatorio>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.microservice.recordatorio.MicroserviceRecordatorioApplication",
+            "projectName": "microservice-recordatorio",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

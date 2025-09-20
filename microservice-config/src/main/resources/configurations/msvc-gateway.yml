@@ -23,6 +23,10 @@ spring:
           uri: http://localhost:8972
           predicates:
             - Path=/api/v1/ventas/**
+        - id: msvc-recordatorio
+          uri: http://localhost:8005
+          predicates:
+            - Path=/api/v1/recordatorios/**
 
 eureka:
   client:

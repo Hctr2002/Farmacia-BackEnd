@@ -10,6 +10,7 @@
     <module>microservice-usuario</module>
     <module>microservice-producto</module>
     <module>microservice-venta</module>
+    <module>microservice-recordatorio</module>
   </modules>
 
   <parent>
