@@ -3,6 +3,7 @@ package com.microservice.producto.controller;
 import com.microservice.producto.dto.ProductoDTO;
 import com.microservice.producto.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,12 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ProductoDTO obtenerProducto(@PathVariable Long id) {
-        return service.obtenerProducto(id);
+    public ResponseEntity<ProductoDTO> obtenerProducto(@PathVariable Long id) {
+        ProductoDTO producto = service.obtenerProducto(id);
+        if (producto == null) {
+            return ResponseEntity.notFound().build(); // 404
+        }
+        return ResponseEntity.ok(producto);
     }
 
     @GetMapping

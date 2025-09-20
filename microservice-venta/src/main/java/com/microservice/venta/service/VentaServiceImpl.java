@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.microservice.venta.client.ProductoClient;
 import com.microservice.venta.client.UsuarioClient;
 import com.microservice.venta.dto.VentaDTO;
 import com.microservice.venta.model.Venta;
@@ -20,6 +21,9 @@ public class VentaServiceImpl implements VentaService {
 
     @Autowired
     private UsuarioClient usuarioClient;
+
+    @Autowired
+    private ProductoClient productoClient;
 
     private VentaDTO mapToDTO(Venta venta) {
         VentaDTO dto = new VentaDTO();
@@ -49,6 +53,12 @@ public class VentaServiceImpl implements VentaService {
             usuarioClient.getUsuarioById(ventaDTO.getUsuarioId());
         } catch (feign.FeignException.NotFound e) {
             throw new RuntimeException("El usuario con id " + ventaDTO.getUsuarioId() + " no existe");
+        }
+
+        try {
+            productoClient.getProductoById(ventaDTO.getProductoId());
+        } catch (feign.FeignException.NotFound e) {
+            throw new RuntimeException("El producto con id " + ventaDTO.getProductoId() + " no existe");
         }
 
         Venta venta = repository.save(mapToEntity(ventaDTO));
