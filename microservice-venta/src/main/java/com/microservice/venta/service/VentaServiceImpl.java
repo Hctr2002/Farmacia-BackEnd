@@ -36,17 +36,6 @@ public class VentaServiceImpl implements VentaService {
         return dto;
     }
 
-    private Venta mapToEntity(VentaDTO dto) {
-        return Venta.builder()
-                .id(dto.getId())
-                .usuarioId(dto.getUsuarioId())
-                .productoId(dto.getProductoId())
-                .cantidad(dto.getCantidad())
-                .total(dto.getTotal())
-                .fecha(dto.getFecha() != null ? dto.getFecha() : LocalDateTime.now())
-                .build();   
-    }
-
     @Override
     public VentaDTO crearVenta(VentaDTO ventaDTO) {
         try {
@@ -55,14 +44,27 @@ public class VentaServiceImpl implements VentaService {
             throw new RuntimeException("El usuario con id " + ventaDTO.getUsuarioId() + " no existe");
         }
 
+        Float precioProducto;
         try {
-            productoClient.getProductoById(ventaDTO.getProductoId());
+            var producto = productoClient.getProductoById(ventaDTO.getProductoId());
+            precioProducto = producto.getPrecio();
         } catch (feign.FeignException.NotFound e) {
             throw new RuntimeException("El producto con id " + ventaDTO.getProductoId() + " no existe");
         }
 
-        Venta venta = repository.save(mapToEntity(ventaDTO));
-        return mapToDTO(venta);
+        Float totalCalculado = precioProducto * ventaDTO.getCantidad();
+
+        Venta venta = Venta.builder()
+                .usuarioId(ventaDTO.getUsuarioId())
+                .productoId(ventaDTO.getProductoId())
+                .cantidad(ventaDTO.getCantidad())
+                .fecha(LocalDateTime.now())
+                .total(totalCalculado)
+                .build();
+
+        Venta guardada = repository.save(venta);
+
+        return mapToDTO(guardada);
     }
 
 
