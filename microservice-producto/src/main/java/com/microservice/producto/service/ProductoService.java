@@ -9,4 +9,5 @@ public interface ProductoService {
     List<ProductoDTO> listarProductos();
     ProductoDTO actualizarProducto(Long id, ProductoDTO productoDTO);
     void eliminarProducto(Long id);
+    public ProductoDTO reducirStock(Long id, int cantidad);
 }

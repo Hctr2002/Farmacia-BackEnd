@@ -43,4 +43,10 @@ public class ProductoController {
     public void eliminarProducto(@PathVariable Long id) {
         service.eliminarProducto(id);
     }
+
+    @PutMapping("/{id}/reducir-stock")
+    public ProductoDTO reducirStock(@PathVariable Long id, @RequestParam int cantidad) {
+        return service.reducirStock(id, cantidad);
+    }
+
 }

@@ -38,22 +38,34 @@ public class VentaServiceImpl implements VentaService {
 
     @Override
     public VentaDTO crearVenta(VentaDTO ventaDTO) {
+        // 1. Validar usuario
         try {
             usuarioClient.getUsuarioById(ventaDTO.getUsuarioId());
         } catch (feign.FeignException.NotFound e) {
             throw new RuntimeException("El usuario con id " + ventaDTO.getUsuarioId() + " no existe");
         }
 
+        // 2. Validar producto y obtener precio
         Float precioProducto;
         try {
             var producto = productoClient.getProductoById(ventaDTO.getProductoId());
             precioProducto = producto.getPrecio();
+
+            // 3. Reducir stock en el microservicio producto
+            try {
+                productoClient.reducirStock(ventaDTO.getProductoId(), ventaDTO.getCantidad());
+            } catch (feign.FeignException.BadRequest e) {
+                throw new RuntimeException("Stock insuficiente para el producto con id " + ventaDTO.getProductoId());
+            }
+
         } catch (feign.FeignException.NotFound e) {
             throw new RuntimeException("El producto con id " + ventaDTO.getProductoId() + " no existe");
         }
 
+        // 4. Calcular el total
         Float totalCalculado = precioProducto * ventaDTO.getCantidad();
 
+        // 5. Guardar venta
         Venta venta = Venta.builder()
                 .usuarioId(ventaDTO.getUsuarioId())
                 .productoId(ventaDTO.getProductoId())
@@ -66,6 +78,7 @@ public class VentaServiceImpl implements VentaService {
 
         return mapToDTO(guardada);
     }
+
 
 
     @Override

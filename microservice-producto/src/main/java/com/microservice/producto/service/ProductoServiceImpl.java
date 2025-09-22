@@ -73,6 +73,20 @@ public class ProductoServiceImpl implements ProductoService {
         }).orElse(null);
     }
 
+    @Override
+    public ProductoDTO reducirStock(Long id, int cantidad) {
+        Producto producto = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+
+        if (producto.getStock() < cantidad) {
+            throw new RuntimeException("Stock insuficiente para la cantidad con el producto de id " + id);
+        }
+
+        producto.setStock(producto.getStock() - cantidad);
+        Producto actualizado = repository.save(producto);
+
+        return mapToDTO(actualizado);
+    }
 
 
 }
